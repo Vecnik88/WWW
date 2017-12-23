@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Игра Виселица!</title>
+	</head>
+	<body>
+		<h1>"Виселица"</h1>
+			<script>
+				var words = [
+					"автомобиль",
+					"слово",
+					"герой",
+					"коренной", 
+					"листок",
+					"зима",
+					"алло",
+					"лоток"
+				];
+				var word = words[Math.floor(Math.random() * words.length)];
+				var answerArray = [];
+				for (var i = 0; i < word.length; ++i) {
+					answerArray[i] = "_";
+				}
+				var remainingLeters = word.length;
+				while (remainingLeters > 0) {
+					// показываем состояние игры
+					alert(answerArray.join(" "));
+					// запрашиваем ответ от пользователя
+					var guess = prompt("Введите букву, или нажмите отмена для прекращения игры");
+					if (guess === null) {
+						break;
+					} else if (guess.length !== 1) {
+						alert("Пожалуйста введите одну букву");
+					} else {
+						for (var i = 0; i < word.length; ++i) {
+							if (word[i] === guess) {
+								answerArray[i] = guess;
+								--remainingLeters;
+							}
+						}
+					}
+				}
+				alert(answerArray.join(" "));
+				alert("Поздравляем вы отгадали слово " + word + "!");
+			</script>
+	</body>
+</html>
